@@ -2,8 +2,6 @@
 #include <cstdlib>
 #include <string>
 
-//sudo g++ -o test1.cgi test_01.cpp
-
 using namespace std;
 
 int main()
@@ -30,6 +28,10 @@ int main()
 	cout << "aName : <input type=text name=aName><br>\n"<<endl;
 	cout << "aPassword : <input type=password name=aPW><br>\n"<<endl;
 	cout << "aFile : <input type=file name=aFile><br>\n"<<endl;
+  cout << "aCheckBox : <input type=checkbox name=aCB value=CH1><br> "<<endl;
+  cout << "Radio: <input type=radio name=aRadio value=1>Yes, <input type=radio name=aRadio value=0>No" << endl;
+  cout << "<select name=aSelect>  <option value=1>first</option>  <option value=2>second</option>  <option value=3>third</option>  <option value=4>fourth</option></select>" << endl;
+
 	cout << "Contents : <textarea name='Contents' rows='5' cols='50'></textarea>\n"<<endl;
 	cout << "Submit : <input type=submit value=submit>"<<endl;
 	cout << "</form>"<<endl;
@@ -41,6 +43,9 @@ int main()
 	cout << "aName : <input type=text name=aName><br>\n"<<endl;
 	cout << "aPassword : <input type=password name=aPW><br>\n"<<endl;
 	cout << "aFile : <input type=file name=aFile><br>\n"<<endl;
+  cout << "aCheckBox : <input type=checkbox name=aCB value=CH1><br> "<<endl;
+  cout << "Radio: <input type=radio name=aRadio value=1>Yes, <input type=radio name=aRadio value=0>No" << endl;
+  cout << "<select name=aSelect>  <option value=1>first</option>  <option value=2>second</option>  <option value=3>third</option>  <option value=4>fourth</option></select>" << endl;
 	cout << "Contensts : <textarea name='Contents' rows='5' cols='50'></textarea>\n"<<endl;
 	cout << "Submit : <input type=submit value=submit>"<<endl;
 	cout << "</form>\n\n"<<endl;
