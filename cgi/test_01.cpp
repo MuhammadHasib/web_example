@@ -3,6 +3,7 @@
 #include <string>
 
 using namespace std;
+// sudo g++ -o test1.cgit test_01.cpp
 
 int main()
 {
@@ -13,6 +14,7 @@ int main()
       "REMOTE_ADDR","REMOTE_HOST","REMOTE_USER","REQUEST_METHOD","SCRIPT_NAME",
       "SCRIPT_FILENAME","SERVER_NAME","SERVER_PORT","SERVER_PROTOCOL","HTTP_COOKIE"
   };  
+  //detail: http://www.cgi101.com/book/ch3/text.html
 
   string values2[20];
   for(int i=0;i<20;i++)
