@@ -28,6 +28,8 @@
   position: absolute; top: 5px;right: 10px;
   width:50px;height:500px;background-color:#F95; z-index:1000;
 }
+
+#topmenu {  margin: -20px 0px 0px 0px; position:relative; z-index: 10000;margin-left:auto; margin-right:auto;;} #topmenu ul ul {  display: none;} #topmenu ul li:hover > ul {  display: block;  } #topmenu ul {  background: #3AD;  padding: 0 20px;  border-radius: 5px;    list-style: none;  position: relative;  display: inline-table;} #topmenu ul:after {    content: ''; clear: both; display: block;  } #topmenu ul li {    float: left;  }        #topmenu ul li:hover {  background: #256;} #topmenu ul li:hover a {  color: #fff;}    #topmenu ul li a {  display: block; padding: 10px 20px;  color: #fff; text-decoration: none;}        #topmenu ul ul {  background: #256; border-radius: 0px; padding: 0;  position: absolute; top: 100%;} #topmenu ul ul li {  float: none;   border-top: 1px solid #677;  border-bottom: 1px solid #566; position: relative;} #topmenu ul ul li a {  padding: 10px 20px;  color: #fff;}  #topmenu ul ul li a:hover {  background: #3AD;}            #topmenu ul ul ul {  position: absolute; left: 100%; top:0;}
 </style>
 </head>
 <body>
@@ -59,10 +61,19 @@
  id : myDiv4
 </div>
 
-<p>
-more detail:<br>
-<a href=http://www.w3schools.com/html/ target=w3school>http://www.w3schools.com/html</a>
-</p>
+<br><br><br>
+<div id=topmenu>
+  <ul> <li> <a href=#>Menu 1</a></li>  
+       <li> <a href=#>Menu 2</a>
+            <ul> <li> <a href=#>Menu 21</a></li>
+                 <li> <a href=#>Menu 22</a></li>
+                 <li> <a href=#>Menu 23</a></li>
+            </ul>
+       </li>  
+       <li> <a href=#>Menu 3</a></li>  
+       <li> <a href=#>Menu 4</a></li>  
+  </ul>
+</div>
 
 
 </body>

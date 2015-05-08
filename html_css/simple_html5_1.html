@@ -3,36 +3,54 @@
 
 <body>
 
+<img id=myImage src=https://avatars3.githubusercontent.com/u/4801570?v=3&s=460 width=100px height=100px>
+<br><br>
+
 <canvas id=myCanvas1 width=300 height=300 style="border:1px solid #c3c3c3;">
 Your browser does not support the HTML5 canvas tag.
 </canvas>
+<p><button onclick="addImagOnCanvas()">Try it</button></p>
 
 <script>
-var c = document.getElementById("myCanvas1");
+function DrawCanvas(){
+  var c = document.getElementById("myCanvas1");
 
-var ctx = c.getContext("2d");
-ctx.fillStyle = "#FFAA00";
-ctx.fillRect(0,0,50,175);
+  var ctx = c.getContext("2d");
+  ctx.fillStyle = "#FFAA00";
+  ctx.fillRect(0,0,50,175);
 
-var ctx2 = c.getContext("2d");
-ctx2.moveTo(10,10);
-ctx2.lineTo(150,150);
-ctx2.stroke();
+  var ctx2 = c.getContext("2d");
+  ctx2.moveTo(10,10);
+  ctx2.lineTo(150,150);
+  ctx2.stroke();
 
-var ctx3 = c.getContext("2d");
-ctx3.beginPath();
-ctx3.arc(150,150,40,0,2*Math.PI);
-ctx3.stroke();
+  var ctx3 = c.getContext("2d");
+  ctx3.beginPath();
+  ctx3.arc(150,150,40,0,2*Math.PI);
+  ctx3.stroke();
 
-var ctx4 = c.getContext("2d");
-ctx4.font = "30px Arial";
-ctx4.fillText("Hello World",190,50);
+  var ctx4 = c.getContext("2d");
+  ctx4.font = "30px Arial";
+  ctx4.fillText("Hello World",190,50);
+}
+function addImagOnCanvas() {
+  var c = document.getElementById("myCanvas1");
+  var ctx5 = c.getContext("2d");
+  var img = document.getElementById("myImage");
+  ctx5.drawImage(img,10,150,100,100);
+}
 
-//var ctx5 = c.getContext("2d");
-//var img = document.getElementById("imageID");
-//ctx5.drawImage(img,10,10);
+DrawCanvas();
 
 </script>
+
+
+<p> svg
+<svg width=100 height=100>
+  <circle cx=50 cy=50 r=40 stroke=blue stroke-width=3 fill=pink />
+</svg>
+
+</p>
 
 </body>
 </html>
