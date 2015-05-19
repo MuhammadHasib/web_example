@@ -1,0 +1,93 @@
+<html>
+<body>
+<style>
+div {
+    background-color: #d0e4fe;
+}
+</style>
+
+<p>demo01<div id="demo01"> </div> </p>
+<p>demo011<div id="demo011"> </div> </p>
+<p>demo02<div id="demo02"> </div> </p>
+<p>demo03<div id="demo03"> </div> </p>
+<p>demo1 <div id="demo1">  </div>   </p>
+<p>demo11<div id="demo11"> </div> </p>
+<p>demo2 <div id="demo2">  </div>   </p>
+<p>demo3 <div id="demo3">  </div>   </p>
+
+<script>
+
+var aaa = {name:"aaaa", value:20, data:[[10,20],[20,30]], data2:[ {name:"dddd",value:10}] };
+var aa = 10;
+var aaaa = "aaaaaaaa";
+var bbb = ["aaa", "bbb", "ccc"];
+var ccc;
+document.getElementById("demo01").innerHTML = "aaa.name:"+aaa.name+", aaa.value:"+aaa.value+", aa:"+aa+", aaaa:"+aaaa+"<br>typeof ccc:"+(typeof ccc)+", typeof aaa:"+(typeof aaa)+", typeof(aa):"+(typeof aa)+", typeof aaaa:"+(typeof aaaa);
+
+document.getElementById("demo02").innerHTML = "aaa.data:"+ddd+"<p> aaa.data2[0].name:"+aaa.data2[0].name+", aaa.data2[0].value:"+aaa.data2[0].name ;
+
+var ddd = "";
+for(var i=0;i<aaa.data.length;i++) ddd+="("+aaa.data[i][0]+","+aaa.data[i][1]+")";
+
+document.getElementById("demo03").innerHTML = "typeof undefined : "+typeof undefined + "<br> typeof null: " + typeof null + "<br>  (null === undefined): " + (null === undefined) + "<br> (null == undefined):" + (null == undefined);
+// == : equal to
+// === : equal value and equal type
+// !== : not equal value or not equal type
+//http://www.w3schools.com/js/js_operators.asp
+
+
+//for JSON
+var myJsonString = '{"name":"aaaa", "value":20, "data":[[10,20],[20,30]], "data2":[ {"name":"dddd","value":10}]}';
+var myJSON = JSON.parse(myJsonString);
+document.getElementById("demo011").innerHTML = "myJSON.name:"+myJSON.name+", myJSON.value:"+myJSON.value+"<br>";
+
+
+
+//more detail:
+//http://www.w3schools.com/js/js_type_conversion.asp
+
+///////////////////
+//Date
+    var d = new Date();
+    document.getElementById("demo1").innerHTML = "d.getTime():"+d.getTime()+", d.getYear():"+d.getYear()+", d.toUTCString:"+d.toUTCString();
+
+    var d11 = Date.parse("March 21, 2012");
+    document.getElementById("demo11").innerHTML = "d11:"+d11;
+   
+    var today, someday, text;
+    today = new Date();
+    someday = new Date();
+    someday.setFullYear(2020, 0, 14);
+   
+    if (someday > today) {
+       text = "Today is before January 14, 2020.";
+    } else {
+       text = "Today is after January 14, 2020.";
+    }
+    document.getElementById("demo2").innerHTML = text;
+
+//////
+//String
+    var str = "abcdefghijklmnopqrstuvwxyz"
+    var pos = str.search("g");
+    var pos1 = str.search("gg");
+    var pos2 = str.indexOf("z");
+    document.getElementById("demo3").innerHTML = str+", g:"+pos+", gg:"+pos1+", indexOf(z):"+pos2;
+
+///////
+</script>
+<!--
+//http://www.w3schools.com/js/js_datatypes.asp
+//http://www.w3schools.com/js/js_type_conversion.asp
+//http://www.w3schools.com/js/js_date_methods.asp
+
+//http://www.w3schools.com/js/js_strings.asp
+http://www.w3schools.com/js/js_string_methods.asp
+
+http://www.w3schools.com/js/js_json.asp
+http://www.w3schools.com/js/js_object_methods.asp
+http://www.w3schools.com/js/tryit.asp?filename=tryjs_object_prototype6
+-->
+
+</body>
+</html>
