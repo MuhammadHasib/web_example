@@ -1,0 +1,279 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script>
+ function re_str(e){if(typeof e=="undefined")return"";else return e}
+ function GetValue(link, target, callback) {
+     $.getJSON(link,function(data, status) {
+         $(target).append("<ul>" + data.title + " ");
+
+         for(var i=0;i<data.data.length; i++)
+         {
+            $(target).append("<li>" + data.data[i].name + "</li> ");
+         }
+
+         $(target).append("</ul>" + "<br>");
+
+         if (callback && typeof(callback) === "function") {
+             callback()
+         }
+     })
+}
+
+
+function GetAll(link1, link2, target1, target2) {
+    GetValue(link1, target1, function() {
+        GetValue(link2, target2, function() {
+        })
+    })
+}
+
+var my_colors=["#FF0000","#0000FF","#008000","#00FFFF","#800080","#FF00FF","#00FF00","#000000","#808080","#FFA500","#008080","#000080","#DDA0DD","#FFE4C4","#B0C4DE","#ffd700"];
+var my_colors_=["Red","Blue","Green","Cyan","Purple","Fuchsia","Lime","Black","Gray","Orange","Teal","Navy","Plum","Bisque","Light steel blue","gold"];
+var _plotBorderColor='#000';
+var _plotBorderWidth=1;
+var _title_style_color='#000';
+var _legend_itemStyle_color='#000';
+var _legend_borderColor='#FFF';
+var _Axis_lineColor='#000';
+var _Axis_tickColor='#000';
+var _Axis_gridLineColor='#000';
+var _Axis_gridLineDashSytle='shortdash';
+var _Axis_title_style_color='#000';
+var _Axis_labels_style_color='#000';
+var _subtitle_style_color='#000';
+var _subtitle_align='right';
+
+function makeChart_Time(target, data) { 
+    var r = new Highcharts.Chart({
+        chart: {
+            zoomType: data.zoomType,
+            renderTo: target,
+            type: data.chartType,
+            plotBorderColor: _plotBorderColor,
+            plotBorderWidth: _plotBorderWidth
+        },
+        colors: my_colors,
+        title: {
+            text: data.title,
+            style: {
+                "color": _title_style_color
+            }
+        },
+        credits: {
+            enabled: false
+        },
+        legend: {
+            itemStyle: {
+                color: _legend_itemStyle_color
+            },
+            borderColor: _legend_borderColor
+        },
+        xAxis: {
+            lineColor: _Axis_lineColor,
+            tickColor: _Axis_tickColor,
+            gridLineColor: _Axis_gridLineColor,
+            gridLineDashStyle: _Axis_gridLineDashSytle,
+            title: {
+                text: data.xtitle + " " + re_str(data.xunit),
+                style: {
+                    "color": _Axis_title_style_color
+                }
+            },
+            type: "datetime",
+            maxZoom: 1 * 24 * 36e5,
+            dateTimeLabelFormats: {
+                month: "%e. %b",
+                year: "%b"
+            },
+            labels: {
+                style: {
+                    "color": _Axis_labels_style_color
+                }
+            }
+        },
+        yAxis: [{
+            lineColor: _Axis_lineColor,
+            tickColor: _Axis_tickColor,
+            gridLineColor: _Axis_gridLineColor,
+            gridLineDashStyle: _Axis_gridLineDashSytle,
+            min: data.min,
+            minRange: .1,
+            id: "y_",
+            type: "linear",
+            title: {
+                text: data.ytitle,
+                style: {
+                    "color": _Axis_title_style_color
+                }
+            },
+            labels: {
+                format: "{value} " + re_str(data.yunit),
+                style: {
+                    "color": _Axis_labels_style_color
+                }
+            }
+        }, {
+            lineColor: _Axis_lineColor,
+            tickColor: _Axis_tickColor,
+            gridLineColor: _Axis_gridLineColor,
+            gridLineDashStyle: _Axis_gridLineDashSytle,
+            min: 0,
+            minRange: .1,
+            id: "y2_",
+            type: "linear",
+            title: {
+                text: data.ytitle2,
+                style: {
+                    "color": _Axis_title_style_color
+                }
+            },
+            opposite: true,
+            labels: {
+                format: "{value} " + re_str(data.yunit2),
+                style: {
+                    "color": _Axis_labels_style_color
+                }
+            }
+        }],
+        tooltip: {
+            formatter: function() {
+                return "<b>" + this.series.name + "</b><br/>" + Highcharts.dateFormat("%Y-%m-%d %H:%M:%S", this.x) + " UTC <br> " + this.y
+            }
+        },
+        series: data.data,
+        navigation: {
+            buttonOptions: {
+                enabled: true
+            }
+        },
+        exporting: {
+            filename: "RPCWBMchart"
+        },
+        subtitle: {
+            align: "right",
+            text: data.subtitle,
+            x: -10,
+            style: {
+                "color": _subtitle_style_color
+            }
+        }
+    });
+    return r
+}
+
+function makeChart_XY(target, data) { 
+    var r = new Highcharts.Chart({
+        chart: {
+            zoomType: data.zoomType,
+            renderTo: target,
+            type: data.chartType
+        },
+        colors: my_colors,
+        title: {
+            text: data.title
+        },
+        credits: {
+            enabled: false
+        },
+        xAxis: {
+            title: {
+                text: data.xtitle + " " + re_str(data.xunit)
+            },
+            labels: {
+                format: "{value} " + re_str(data.xunit)
+            }
+        },
+        yAxis: [{
+            min: data.min,
+            minRange: .1,
+            id: "y_",
+            type: "linear",
+            title: {
+                text: data.ytitle
+            },
+            labels: {
+                format: "{value} " + re_str(data.yunit)
+            }
+        }, {
+            min: 0,
+            minRange: .1,
+            id: "y2_",
+            type: "linear",
+            title: {
+                text: data.ytitle2
+            },
+            opposite: true,
+            labels: {
+                format: "{value} " + re_str(data.yunit2)
+            }
+        }],
+        tooltip: {
+            formatter: function() {
+                return "<b>" + this.series.name + "</b><br/>" + "x:" + this.x + ", y:" + this.y + " "
+            }
+        },
+        series: data.data,
+        navigation: {
+            buttonOptions: {
+                enabled: true
+            }
+        },
+        exporting: {
+            filename: "RPCWBMchart"
+        },
+        subtitle: {
+            align: "right",
+            text: data.subtitle,
+            x: -10,
+            style: {
+                "color": "#000"
+            }
+        }
+    });
+    return r
+}
+
+function GetAll2(link1, link2, target1, target2) {
+     $.getJSON(link1,function(data1, status) {
+        makeChart_Time(target1,data1);
+    })
+     $.getJSON(link2,function(data2, status) {
+        makeChart_XY(target2,data2);
+     })
+}
+
+
+$(document).ready(function(){
+    $("#hide").click(function(){
+        $("#data").hide();
+    });
+    $("#show").click(function(){
+        $("#data").show();
+    });
+    $("#data").css("background-color","#ebb");
+    $("#data").css("width","300px");
+
+    GetAll("data2.json", "data1.json", "#data", "#data");
+    GetAll2("data2.json", "data1.json", "chart1", "chart2");
+});
+
+
+</script>
+</head>
+<body>
+<table><tr><td>
+<div id=data></div>
+
+<button id="hide">Hide</button>
+<button id="show">Show</button>
+</td><td>
+<div id=chart1 style="width:400px;height:400px;background-color:#ebb;">eee</div>
+</td><td>
+<div id=chart2 style="width:400px;height:400px;background-color:#ebb;">eee</div>
+</td>
+</tr></table>
+
+</body>
+</html>
